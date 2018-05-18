@@ -21,7 +21,7 @@ if ( ! isset($_SESSION['user_id']) ) {
 
 // Guardian: Make sure that profile_id is present
 if ( ! isset($_GET['company_id']) ) {
-  $_SESSION['error'] = "No company selected";
+  $_SESSION['error'] = "Sorry, something went wrong";
   header('Location: index.php');
   return;
 } else {
@@ -29,9 +29,7 @@ if ( ! isset($_GET['company_id']) ) {
 }
 
 if ( isset($_POST['delete']) && isset($_POST['company']) ) {
-?>
 
-<?php
     $sql = "DELETE FROM company WHERE company_id = :zip";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array(':zip' => $company_id));
@@ -63,9 +61,11 @@ require_once "bootstrap.php";
 <body>
 <div class="container">
 
-<p>Confirm: Delete profile for <?= htmlentities($row['name']) ?></p>
+<h1>Delete Company</h1>
 
-<form onsubmit="return confirm('Are you sure you want to delete this company? If yes, click OK.');" method="post">
+<h3>Please confirm: Delete profile for <?= htmlentities($row['name']) ?></h3>
+
+<form onsubmit="return confirm('Are you sure you want to delete this company? This action can't be undone. If yes, click OK.');" method="post">
 <input type="hidden" name="company" value="<?= $row['company_id'] ?>">
 <input type="submit" value="Delete" name="delete">
 

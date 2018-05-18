@@ -1,4 +1,10 @@
 <?php
+// If the user requested logout
+if ( isset($_POST['logout']) ) {
+    header('Location: Logout.php');
+    return;
+}
+
 function flashMessages() {
   if ( isset($_SESSION['success']) ) {
     echo('<p style="color: green;">'.htmlentities($_SESSION['success'])."</p>\n");
@@ -17,13 +23,6 @@ function greeting() {
     unset($_SESSION['greet']);
 }
 
-}
-
-
-// If the user requested logout
-if ( isset($_POST['logout']) ) {
-    header('Location: Logout.php');
-    return;
 }
 
 // this is library code so no closing php tag at end

@@ -20,18 +20,6 @@ if ( ! isset($_SESSION['user_id']) ) {
     $user_id = $_SESSION['user_id'];
 }
 
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Add Company</title>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<?php
-
-require_once "bootstrap.php";
-
 if ( isset($_POST['add'])) {
 
   if ( isset($_POST['name']) && isset($_POST['address'])
@@ -57,6 +45,14 @@ if ( isset($_POST['add'])) {
 
 }
 
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Company</title>
+
+<?php
+require_once "bootstrap.php";
 ?>
 
 </head>

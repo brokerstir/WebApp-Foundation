@@ -5,6 +5,13 @@ require_once "pdo.php";
 //require_once "pdo_db_live.php";
 require_once "util.php";
 
+if ( isset($_POST['cancel'] ) ) {
+    // Redirect the browser to index.php
+    $_SESSION["error"] = "Action cancelled";
+    header("Location: index.php");
+    return;
+}
+
 
 if ( isset($_POST['name']) ) {
 
@@ -70,7 +77,11 @@ require_once "bootstrap.php";
 ?>
 </head>
 <body>
-<p>Edit Company</p>
+
+<div class="container">
+
+<h1>Edit Company Details</h1>
+
 <form method="post">
 <p>Name:
 <input type="text" name="name" value="<?= $n ?>"></p>
@@ -135,12 +146,13 @@ require_once "bootstrap.php";
 
 <p>Zip:
 <input type="text" name="zip" value="<?= $z ?>"></p>
-<p>Summary:</p>
 
 <input type="hidden" name="company_id" value="<?= $company_id ?>">
 <p><input type="submit" value="Update"/>
-<a href="index.php">Cancel</a></p>
+<input type="submit" name="cancel" value="Cancel"></p>
 </form>
+
+</div>
 
 </body>
 </html>

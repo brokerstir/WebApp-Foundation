@@ -11,11 +11,6 @@ if ( ! isset($_SESSION['user_id']) ) {
     $login = 1;
 }
 
-// If the user requested logout go back to index.php
-if ( isset($_POST['logout']) ) {
-    header('Location: Logout.php');
-    return;
-}
 
 // Guardian: Make sure that company_id is present
 if ( ! isset($_GET['company_id']) ) {
@@ -43,11 +38,6 @@ table, tr, th, td {
 }
 </style>
 
-<script>
-  src="https://code.jquery.com/jquery-3.2.1.js"
-  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-  crossorigin="anonymous">
-</script>
 
 </head>
 <body>
@@ -60,20 +50,34 @@ table, tr, th, td {
 
   <?php
 
-  $stmt = $pdo->query("SELECT * FROM company Where company_id = $company_id");
+  $count = 0;
+  $stmt = $pdo->query("SELECT * FROM company
+                          LEFT JOIN users on company.company_id = users.company_id
+                          Where company.company_id = $company_id");
   while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-    echo "<h3>";
-    echo(htmlentities($row['name']));
-    echo("</h3>");
+    if ($count == 0) {
+      echo "<h3>";
+      echo(htmlentities($row['name']));
+      echo "</h3>";
+      echo "<p>" . (htmlentities($row['address'])) . ", " . (htmlentities($row['city'])) . ", " . (htmlentities($row['state'])) . "  " . (htmlentities($row['zip'])) . "</p>";
+      echo "</br>";
+    }
+    echo(htmlentities($row['first_name']));
+    echo "</br>";
+    $count += 1;
   }
 
+  echo "</br>";
+
   echo "<p>";
-  echo('<a href="edit.php?company_id='.$company_id.'">Edit</a> ');
+  echo('<a href="edit.php?company_id='.$company_id.'">Edit Company</a> ');
+  echo("</p>");
+
+  echo "<p>";
+  echo('<a href="add_contact.php?company_id='.$company_id.'">Add Company Contact</a> ');
   echo("</p>");
   ?>
 
-
-  <p><a href="add.php">Add New</a></p>
   <p><a href="index.php">Home Page</a></p>
   <p><a href="logout.php">Logout</a></p>
 

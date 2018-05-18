@@ -5,7 +5,9 @@ require_once "pdo.php";
 //require_once "pdo_db_live.php";
 require_once "util.php";
 
+// check if user is logged in and set binary value to check login
 if ( ! isset($_SESSION['user_id']) ) {
+    $_SESSION['success'] = "You are logged out";
     $login = 0;
 } else {
     $login = 1;
@@ -50,13 +52,13 @@ if ( ! isset($_SESSION['user_id']) ) {
           <!-- admin / secret123 -->
 
           <p>
-            <a href="add.php">Add Company</a>
+            <a href="add.php">Add New Company</a>
           </p>
 
         <?php } else { ?>
 
           <p>
-            <a href="add.php">Add Company</a>
+            <a href="add.php">Add New Company</a>
           </p>
 
           <p>
@@ -64,6 +66,8 @@ if ( ! isset($_SESSION['user_id']) ) {
           </p>
 
         <?php } ?>
+
+        <h3>Company List</h3>
 
         <table>
 
