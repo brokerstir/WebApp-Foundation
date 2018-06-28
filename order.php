@@ -20,7 +20,8 @@ if ( ! isset($_SESSION['user_id']) ) {
     $user_id = $_SESSION['user_id'];
 }
 
-if ( isset($_POST['order'])) {
+
+if ( isset($_POST['order'])) { // inserts order
 
   if ( isset($_POST['company']) && isset($_POST['amount'])) {
 
@@ -37,7 +38,6 @@ if ( isset($_POST['order'])) {
           return;
 
     }
-
 
 }
 
