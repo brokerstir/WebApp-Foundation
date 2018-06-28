@@ -62,6 +62,10 @@ if ( ! isset($_SESSION['user_id']) ) {
           </p>
 
           <p>
+            <a href="order.php">Add New Order</a>
+          </p>
+
+          <p>
             <a href="logout.php">Log Out</a>
           </p>
 
