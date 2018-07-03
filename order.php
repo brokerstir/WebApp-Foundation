@@ -1,4 +1,5 @@
 <?php
+// This script is for adding new orders
 session_start();
 
 require_once "pdo.php";
