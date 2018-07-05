@@ -1,11 +1,16 @@
 <?php
 // This script is for adding new orders
+
+// start session
 session_start();
 
+// connect db
 require_once "pdo.php";
-//require_once "pdo_db_live.php";
+
+// utility functions
 require_once "util.php";
 
+// cancel order action
 if ( isset($_POST['cancel'] ) ) {
     // Redirect the browser to index.php
     $_SESSION["error"] = "Action cancelled";
@@ -13,10 +18,12 @@ if ( isset($_POST['cancel'] ) ) {
     return;
 }
 
+// redirect to home if no user in session
 if ( ! isset($_SESSION['user_id']) ) {
   $_SESSION["error"] = "You must be logged in to place an order";
   header( 'Location: index.php' ) ;
   return;
+// else set user id if user is logged in to session
 } else {
     $user_id = $_SESSION['user_id'];
 }
