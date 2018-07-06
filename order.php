@@ -28,11 +28,13 @@ if ( ! isset($_SESSION['user_id']) ) {
     $user_id = $_SESSION['user_id'];
 }
 
+ // inserts order
+if ( isset($_POST['order'])) {
 
-if ( isset($_POST['order'])) { // inserts order
-
+  // check for missing values
   if ( isset($_POST['company']) && isset($_POST['amount'])) {
 
+        // pdo insert
         $stmt = $pdo->prepare('INSERT INTO orders
             (company_id, amount)
             VALUES ( :id, :am)');
@@ -41,6 +43,7 @@ if ( isset($_POST['order'])) { // inserts order
             ':am' => $_POST['amount'])
         );
 
+          // redirect with success message
           $_SESSION['success'] = "New Order Added";
           header("Location: index.php");
           return;
@@ -65,13 +68,15 @@ require_once "bootstrap.php";
 <h1>Add Order</h1>
 <?php
 
-
+// display if error
 if ( isset($_SESSION["error"]) ) {
       echo('<p style="color:red">'.$_SESSION["error"]."</p>\n");
       unset($_SESSION["error"]);
   }
 
 ?>
+
+<!-- add order form -->
 <form method="post">
 
   <p>Company:<select name="company">
