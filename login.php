@@ -71,6 +71,12 @@ if ( isset($_POST['username']) && isset($_POST['pass']) ) {
 <title>Robert Risk | Resume Profiles</title>
 </head>
 <body>
+
+<?php
+$login = 0;
+require_once "navbar.php";
+?>
+
 <div class="container">
 <h1>Please Log In</h1>
 <?php
@@ -78,13 +84,21 @@ if ( isset($_POST['username']) && isset($_POST['pass']) ) {
 flashMessages();
 
 ?>
+
 <form method="POST">
 
-Username <input type="text" name="username" id="id_1722"><br/>
-Password <input type="password" name="pass" id="id_1723"><br/>
+  <div class="form-group">
+      <label for="name">Username</label>
+      <input type="text" class="form-control" name="username" id="id_1722">
+  </div>
 
-<input type="submit" onclick="return doValidate();" value="Log In">
-<input type="submit" name="cancel" value="Cancel">
+  <div class="form-group">
+      <label for="name">Password</label>
+      <input type="password" class="form-control" name="pass" id="id_1723">
+  </div>
+
+<input type="submit" class="btn btn-info" onclick="return doValidate();" value="Log In">
+<input type="submit" class="btn btn-dark" name="cancel" value="Cancel">
 
 </form>
 

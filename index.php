@@ -24,56 +24,31 @@ if ( ! isset($_SESSION['user_id']) ) {
 
     <?php require_once "bootstrap.php"; ?>
 
-    <style>
-    table, tr, th, td {
-       border: 1px solid black;
-    }
-    </style>
 
 </head>
 <body>
 
+<?php require_once "navbar.php"; ?>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="text-info">Company Contact Manager</h1>
+    <p>fundamentals of software engineering for business</p>
+  </div>
+</div>
+
     <div class="container">
 
-        <h1>Company Contact Manager</h1>
+
 
         <?php
         flashMessages();
         greeting();
         ?>
 
+        <h3 class="text-info">Company List</h3>
 
-        <?php if ($login == 0) { ?>
-
-          <p>
-            <a href="login.php">Please Log In</a>
-          </p>
-
-          <!-- admin / secret123 -->
-
-          <p>
-            <a href="add.php">Add New Company</a>
-          </p>
-
-        <?php } else { ?>
-
-          <p>
-            <a href="add.php">Add New Company</a>
-          </p>
-
-          <p>
-            <a href="order.php">Add New Order</a>
-          </p>
-
-          <p>
-            <a href="logout.php">Log Out</a>
-          </p>
-
-        <?php } ?>
-
-        <h3>Company List</h3>
-
-        <table>
+         <table class="table table-hover">
 
         <tr>
           <th>Name</th>
@@ -100,9 +75,14 @@ if ( ! isset($_SESSION['user_id']) ) {
             echo("</td><td>");
             echo(htmlentities($row['zip']));
             echo("</td><td>");
-            echo('<a href="view.php?company_id='.$row['company_id'].'">View</a> / ');
-            echo('<a href="edit.php?company_id='.$row['company_id'].'">Edit</a> / ');
-            echo('<a href="delete.php?company_id='.$row['company_id'].'">Delete</a>');
+
+
+            echo('<div class="btn-group btn-group-sm">');
+                echo('<a href="view.php?company_id='.$row['company_id'].'" class="btn btn-outline-info" role="button">View</a>');
+                echo('<a href="view.php?company_id='.$row['company_id'].'" class="btn btn-outline-warning" role="button">Edit</a>');
+              echo('<a href="view.php?company_id='.$row['company_id'].'" class="btn btn-outline-danger" role="button">Delete</a>');
+            echo('</div>');
+
             echo("</td></tr>\n");
           }
           ?>

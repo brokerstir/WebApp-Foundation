@@ -7,19 +7,19 @@ if ( isset($_POST['logout']) ) {
 
 function flashMessages() {
   if ( isset($_SESSION['success']) ) {
-    echo('<p style="color: green;">'.htmlentities($_SESSION['success'])."</p>\n");
+    echo('<div class="alert alert-success">'.htmlentities($_SESSION['success'])."</div>\n");
     unset($_SESSION['success']);
 }
 
   if ( isset($_SESSION['error']) ) {
-    echo('<p style="color: red;">'.htmlentities($_SESSION['error'])."</p>\n");
+    echo('<div class="alert alert-danger">'.htmlentities($_SESSION['error'])."</div>\n");
     unset($_SESSION['error']);
 }
 }
 
 function greeting() {
   if ( isset($_SESSION['greet']) ) {
-    echo('<p style="color: green;">'.htmlentities($_SESSION['greet'])."</p>\n");
+    echo('<div class="alert alert-success">'.htmlentities($_SESSION['greet'])."</div>\n");
     unset($_SESSION['greet']);
 }
 
