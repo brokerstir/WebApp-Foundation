@@ -79,8 +79,8 @@ if ( ! isset($_SESSION['user_id']) ) {
 
             echo('<div class="btn-group btn-group-sm">');
                 echo('<a href="view.php?company_id='.$row['company_id'].'" class="btn btn-outline-info" role="button">View</a>');
-                echo('<a href="view.php?company_id='.$row['company_id'].'" class="btn btn-outline-warning" role="button">Edit</a>');
-              echo('<a href="view.php?company_id='.$row['company_id'].'" class="btn btn-outline-danger" role="button">Delete</a>');
+                echo('<a href="edit.php?company_id='.$row['company_id'].'" class="btn btn-outline-warning" role="button">Edit</a>');
+              echo('<a href="delete.php?company_id='.$row['company_id'].'" class="btn btn-outline-danger" role="button">Delete</a>');
             echo('</div>');
 
             echo("</td></tr>\n");

@@ -17,9 +17,11 @@ if ( isset($_POST['cancel'] ) ) {
 if ( ! isset($_SESSION['user_id']) ) {
   $_SESSION["error"] = "You must be logged in to add contacts";
   header( 'Location: index.php' ) ;
+  $login = 0;
   return;
 } else {
     $user_id = $_SESSION['user_id'];
+    $login = 1;
 }
 
 // Guardian: Make sure that company_id is present
@@ -85,8 +87,13 @@ require_once "bootstrap.php";
 </head>
 <body>
 
+  <?php
+  $page = 'add_contact';
+  require_once "navbar.php";
+   ?>
+
   <div class="container">
-  <h1>Add Company Contact Person</h1>
+  <h1 class="text-info">Add Company Contact</h1>
 
   <?php
     flashMessages();
@@ -103,20 +110,47 @@ require_once "bootstrap.php";
     }
 ?>
 
+<div class="row">
+  <div class="col-sm-8">
 
 <form method="post">
 
   <h3>Contact Person:</h3>
-  Salutation <input type="text" name="salutation"><br/>
-  First Name <input type="text" name="first_name"><br/>
-  Last Name <input type="text" name="last_name"><br/>
-  Email <input type="text" name="email"><br/>
+
+  <div class="form-group">
+    <label for="Salutation">Salutation</label>
+    <input type="text" class="form-control" name="salutation">
+  </div>
+
+  <div class="form-group">
+    <label for="First Name">First Name</label>
+    <input type="text" class="form-control" name="first_name">
+  </div>
+
+  <div class="form-group">
+    <label for="Last Name">Last Name</label>
+    <input type="text" class="form-control" name="last_name">
+  </div>
+
+  <div class="form-group">
+    <label for="Email">Email</label>
+    <input type="text" class="form-control" name="email">
+  </div>
+
 
   <input type="hidden" name="company_id" value="<?= $company_id ?>">
 
-  <p><input type="submit" name="add" value="Add Contact"/><input type="submit" name="cancel" value="Cancel"></p>
-
+   <button type="submit" class="btn btn-info" name=add>Add Contact</button>
+   <button type="submit" class="btn btn-dark" name=cancel>Cancel</button>
+  
 </form>
+
+</div> <!-- end coll sm-8 -->
+<div class="col-sm-4"></div>
+
+</div>
+
+</div>
 
 </body>
 </html>

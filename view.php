@@ -41,8 +41,14 @@ table, tr, th, td {
 
 </head>
 <body>
+
+  <?php
+  $page = 'view';
+  require_once "navbar.php";
+   ?>
+
 <div class="container">
-<h1>View Company Information</h1>
+
 
 <?php
   flashMessages();
@@ -56,30 +62,27 @@ table, tr, th, td {
                           Where company.company_id = $company_id");
   while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
     if ($count == 0) {
-      echo "<h3>";
+      echo "<p><strong class='text-info'>";
       echo(htmlentities($row['name']));
-      echo "</h3>";
-      echo "<p>" . (htmlentities($row['address'])) . ", " . (htmlentities($row['city'])) . ", " . (htmlentities($row['state'])) . "  " . (htmlentities($row['zip'])) . "</p>";
+      echo "</br></strong>";
+      echo (htmlentities($row['address'])) . ", " . (htmlentities($row['city'])) . ", " . (htmlentities($row['state'])) . "  " . (htmlentities($row['zip']));
+      echo "</br></p></br>";
+      echo('Contacts:');
       echo "</br>";
     }
-    echo(htmlentities($row['first_name']));
+
+    echo(htmlentities($row['first_name'] . " " . $row['last_name']));
     echo "</br>";
     $count += 1;
   }
 
   echo "</br>";
 
-  echo "<p>";
-  echo('<a href="edit.php?company_id='.$company_id.'">Edit Company</a> ');
-  echo("</p>");
+  echo('<a href="edit.php?company_id='.$company_id.'" class="btn btn-outline-warning" role="button">Edit Company</a> ');
+  echo('<a href="add_contact.php?company_id='.$company_id.'" class="btn btn-outline-info" role="button">Add Company Contact</a> ');
 
-  echo "<p>";
-  echo('<a href="add_contact.php?company_id='.$company_id.'">Add Company Contact</a> ');
-  echo("</p>");
   ?>
 
-  <p><a href="index.php">Home Page</a></p>
-  <p><a href="logout.php">Logout</a></p>
 
 </div>
 </body>

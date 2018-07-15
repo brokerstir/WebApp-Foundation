@@ -15,3 +15,5 @@ Technical details should include:
 2. post redirect get pattern php
 3. pdo access data abstraction layer
 4. CRUD operations
+5. relational database model
+6. session variable for user id
