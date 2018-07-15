@@ -22,9 +22,11 @@ if ( isset($_POST['cancel'] ) ) {
 if ( ! isset($_SESSION['user_id']) ) {
   $_SESSION["error"] = "You must be logged in to place an order";
   header( 'Location: index.php' ) ;
+  $login = 0;
   return;
 // else set user id if user is logged in to session
 } else {
+    $login = 1;
     $user_id = $_SESSION['user_id'];
 }
 
@@ -33,6 +35,13 @@ if ( isset($_POST['order'])) {
 
   // check for missing values
   if ( isset($_POST['company']) && isset($_POST['amount'])) {
+
+        $c_id = isset($_POST['company']);
+        if ($c_id == "") {
+          $_SESSION['error'] = "Unable to place order. Try again.";
+          header("Location: index.php");
+          return;
+        }
 
         // pdo insert
         $stmt = $pdo->prepare('INSERT INTO orders
@@ -48,6 +57,12 @@ if ( isset($_POST['order'])) {
           header("Location: index.php");
           return;
 
+    } else {
+
+          $_SESSION['error'] = "Unable to place order.  ";
+          header("Location: index.php");
+          return;
+
     }
 
 }
@@ -56,7 +71,7 @@ if ( isset($_POST['order'])) {
 <!DOCTYPE html>
 <html>
 <head>
-<title>Add Order</title>
+<title>Place Order</title>
 
 <?php
 require_once "bootstrap.php";
@@ -64,38 +79,58 @@ require_once "bootstrap.php";
 
 </head>
 <body>
+
+  <?php
+  $page = 'order';
+  require_once "navbar.php";
+   ?>
+
 <div class="container">
-<h1>Add Order</h1>
+<h1 class="text-info">Place Order</h1>
+
 <?php
 
 // display if error
 if ( isset($_SESSION["error"]) ) {
-      echo('<p style="color:red">'.$_SESSION["error"]."</p>\n");
+      echo('<div class="alert alert-danger">'.$_SESSION["error"]."</div>\n");
       unset($_SESSION["error"]);
   }
 
 ?>
 
+
+<div class="row">
+  <div class="col-sm-4">
 <!-- add order form -->
 <form method="post">
 
-  <p>Company:<select name="company">
-    <option value="">Select...</option>
+  <div class="form-group">
+    <label for="Company">Company</label>
+    <select name="company" class="form-control">
+      <option value="">Select...</option>
 
-    <?php
-    $stmt = $pdo->query("SELECT * FROM company");
-    while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-    ?>
-      <option value=<?php echo(htmlentities($row['company_id']));?>><?php echo(htmlentities($row['name']));?></option>';
-    <?php } ?>
-  </select>
-  </p>
+      <?php
+      $stmt = $pdo->query("SELECT * FROM company");
+      while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+      ?>
+        <option value=<?php echo(htmlentities($row['company_id']));?>><?php echo(htmlentities($row['name']));?></option>';
+      <?php } ?>
+    </select>
+  </div>
 
-  <p>Amount:<input type='number' name='amount' step='0.01' value='0.00' placeholder='0.00'></p>
+  <div class="form-group">
+    <label for="Amount">Amount</label>
+    <input type='number' class="form-control" name='amount' step='5' value='0.00' placeholder='0.00'>
+  </div>
 
-  <p><input type="submit" name="order" value="Add Order"/><input type="submit" name="cancel" value="Cancel"></p>
+  <input type="submit" class="btn btn-info" name="order" value="Place Order"/>
+  <input type="submit" class="btn btn-dark" name="cancel" value="Cancel">
 
 </form>
+
+</div> <!-- end coll sm-4 -->
+<div class="col-sm-8"></div>
+</div>
 
 </div>
 
