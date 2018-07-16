@@ -54,21 +54,25 @@ table, tr, th, td {
   flashMessages();
 ?>
 
+<h1 class="text-info">View Company</h1>
+
   <?php
 
   $count = 0;
   $stmt = $pdo->query("SELECT * FROM company
                           LEFT JOIN users on company.company_id = users.company_id
-                          Where company.company_id = $company_id");
+                          Where company.company_id = $company_id order by last_name");
   while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
     if ($count == 0) {
-      echo "<p><strong class='text-info'>";
+      echo "<p><strong>";
       echo(htmlentities($row['name']));
       echo "</br></strong>";
       echo (htmlentities($row['address'])) . ", " . (htmlentities($row['city'])) . ", " . (htmlentities($row['state'])) . "  " . (htmlentities($row['zip']));
       echo "</br></p></br>";
+
+      echo "<strong>";
       echo('Contacts:');
-      echo "</br>";
+      echo "</strong></br>";
     }
 
     echo(htmlentities($row['first_name'] . " " . $row['last_name']));

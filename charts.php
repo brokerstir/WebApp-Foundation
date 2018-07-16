@@ -24,7 +24,7 @@ $rows = array();
 $stmt = $pdo->query("SELECT company.name, sum(orders.amount) as amount
                       FROM company, orders
                       Where company.company_id = orders.company_id
-                      group by name");
+                      group by name order by amount desc");
 while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
 
   $temp = array();
@@ -46,7 +46,7 @@ $jsonTable = json_encode($table);
 <!DOCTYPE html>
 <html>
 <head>
-<title>Chart Metrics</title>
+<title>Interactive Charts</title>
 <?php
 require_once "bootstrap.php";
 ?>
@@ -65,7 +65,7 @@ require_once "bootstrap.php";
   flashMessages();
 ?>
 
-<h1 class="text-info">Order Charts</h1>
+<h1 class="text-info">Interactive Charts</h1>
 
 <div class="row">
   <div class="col-sm-6">

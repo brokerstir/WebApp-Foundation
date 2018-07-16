@@ -33,7 +33,7 @@ if ( ! isset($_SESSION['user_id']) ) {
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="text-info">Company Contact Manager</h1>
-    <p>fundamentals of software engineering for business</p>
+    <p>fundamentals of software engineering for business <a href="about.php" class="btn btn-outline-secondary" role="button">More Info</a></p>
   </div>
 </div>
 
@@ -62,7 +62,7 @@ if ( ! isset($_SESSION['user_id']) ) {
 
           <?php
 
-          $stmt = $pdo->query("SELECT * FROM company");
+          $stmt = $pdo->query("SELECT * FROM company order by name");
           while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
             echo "<tr><td>";
             echo(htmlentities($row['name']));

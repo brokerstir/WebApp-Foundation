@@ -110,7 +110,7 @@ if ( isset($_SESSION["error"]) ) {
       <option value="">Select...</option>
 
       <?php
-      $stmt = $pdo->query("SELECT * FROM company");
+      $stmt = $pdo->query("SELECT * FROM company order by name");
       while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
       ?>
         <option value=<?php echo(htmlentities($row['company_id']));?>><?php echo(htmlentities($row['name']));?></option>';

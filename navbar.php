@@ -16,20 +16,23 @@
       </li>
 
       <li class="nav-item <?php if ($page == 'charts') { ?> active <?php } ?>">
-        <a class="nav-link" href="charts.php">Order Charts</a>
+        <a class="nav-link" href="charts.php">Interactive Charts</a>
       </li>
     </ul>
 
     <ul class="navbar-nav ml-auto">
       <?php if ($login == 0) { ?>
       <li class="nav-item">
-        <a class="nav-link" href="Login.php">Login</a>
+        <a class="nav-link" href="login.php">Login</a>
       </li>
       <?php } else { ?>
       <li class="nav-item">
         <a class="nav-link" href="logout.php">Logout</a>
       </li>
       <?php } ?>
+      <li class="nav-item <?php if ($page == 'about') { ?> active <?php } ?>">
+        <a class="nav-link" href="about.php">About</a>
+      </li>
     </ul>
 
   </div>
