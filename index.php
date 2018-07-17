@@ -33,7 +33,7 @@ if ( ! isset($_SESSION['user_id']) ) {
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="text-info">Company Contact Manager</h1>
-    <p>fundamentals of software engineering for business <a href="about.php" class="btn btn-outline-secondary" role="button">More Info</a></p>
+    <p>fundamentals of software engineering for business <a href="about.php" class="btn btn-outline-secondary btn-sm" role="button">More Info</a></p>
   </div>
 </div>
 
@@ -78,9 +78,9 @@ if ( ! isset($_SESSION['user_id']) ) {
 
 
             echo('<div class="btn-group btn-group-sm">');
-                echo('<a href="view.php?company_id='.$row['company_id'].'" class="btn btn-outline-info" role="button">View</a>');
-                echo('<a href="edit.php?company_id='.$row['company_id'].'" class="btn btn-outline-warning" role="button">Edit</a>');
-              echo('<a href="delete.php?company_id='.$row['company_id'].'" class="btn btn-outline-danger" role="button">Delete</a>');
+                echo('<a href="view.php?company_id='.$row['company_id'].'" class="btn btn-outline-info btn-sm" role="button">View</a>');
+                echo('<a href="edit.php?company_id='.$row['company_id'].'" class="btn btn-outline-warning btn-sm" role="button">Edit</a>');
+              echo('<a href="delete.php?company_id='.$row['company_id'].'" class="btn btn-outline-danger btn-sm" role="button">Delete</a>');
             echo('</div>');
 
             echo("</td></tr>\n");

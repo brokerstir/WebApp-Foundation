@@ -85,22 +85,29 @@ flashMessages();
 
 ?>
 
-<form method="POST">
+<div class="row">
+  <div class="col-sm-4">
 
-  <div class="form-group">
-      <label for="name">Username</label>
-      <input type="text" class="form-control" name="username" id="id_1722">
-  </div>
+    <form method="POST">
 
-  <div class="form-group">
-      <label for="name">Password</label>
-      <input type="password" class="form-control" name="pass" id="id_1723">
-  </div>
+      <div class="form-group">
+          <label for="name">Username</label>
+          <input type="text" class="form-control" name="username" id="id_1722">
+      </div>
 
-<input type="submit" class="btn btn-info" onclick="return doValidate();" value="Log In">
-<input type="submit" class="btn btn-dark" name="cancel" value="Cancel">
+      <div class="form-group">
+          <label for="name">Password</label>
+          <input type="password" class="form-control" name="pass" id="id_1723">
+      </div>
 
-</form>
+    <input type="submit" class="btn btn-info" onclick="return doValidate();" value="Log In">
+    <input type="submit" class="btn btn-dark" name="cancel" value="Cancel">
+
+    </form>
+
+  </div> <!-- end coll sm-4 -->
+<div class="col-sm-8"></div>
+</div>
 
 </div>
 
