@@ -1,5 +1,7 @@
 This is a repo for the foundations of a business management software system.
 
+Some details include:
+
 Overview:
 
 The finished product should include:
